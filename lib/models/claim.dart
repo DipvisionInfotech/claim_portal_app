@@ -17,6 +17,9 @@ class Claim {
   final ClaimStatus status;
   final String rpId;
   final DateTime lastUpdated;
+  final DateTime submissionDate;
+  final List<ClaimAttachment> attachments;
+  final Map<String, String> particulars;
 
   Claim({
     required this.id,
@@ -26,5 +29,22 @@ class Claim {
     required this.status,
     required this.rpId,
     required this.lastUpdated,
+    required this.submissionDate,
+    this.attachments = const [],
+    this.particulars = const {},
+  });
+}
+
+class ClaimAttachment {
+  final String name;
+  final String type; // e.g., 'PDF', 'Image'
+  final String size;
+  final DateTime uploadDate;
+
+  ClaimAttachment({
+    required this.name,
+    required this.type,
+    required this.size,
+    required this.uploadDate,
   });
 }

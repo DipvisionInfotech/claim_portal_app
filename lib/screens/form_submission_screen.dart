@@ -21,7 +21,7 @@ class _FormSubmissionScreenState extends State<FormSubmissionScreen> {
   final Map<String, TextEditingController> _controllers = {};
 
   // File Upload State
-  List<PlatformFile> _pickedFiles = [];
+  final List<PlatformFile> _pickedFiles = [];
   bool _isSubmitting = false;
 
   @override
@@ -272,9 +272,11 @@ class _FormSubmissionScreenState extends State<FormSubmissionScreen> {
         });
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error picking files: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error picking files: $e')),
+        );
+      }
     }
   }
 
@@ -410,6 +412,7 @@ class _FormSubmissionScreenState extends State<FormSubmissionScreen> {
       status: ClaimStatus.submitted,
       rpId: 'RP001',
       lastUpdated: DateTime.now(),
+      submissionDate: DateTime.now(),
     ));
 
     showDialog(

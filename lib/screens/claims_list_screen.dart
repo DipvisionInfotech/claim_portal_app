@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../providers/claim_provider.dart';
 import '../models/claim.dart';
+import 'claim_details_screen.dart';
 
 class ClaimsListScreen extends StatelessWidget {
   final String title;
@@ -31,8 +32,23 @@ class ClaimsListScreen extends StatelessWidget {
         foregroundColor: const Color(0xFF003366),
         elevation: 0,
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1),
-          child: Container(color: Colors.grey.shade200, height: 1),
+          preferredSize: const Size.fromHeight(60),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Search claims...',
+                prefixIcon: const Icon(Icons.search, color: Color(0xFF003366)),
+                filled: true,
+                fillColor: Colors.grey.shade100,
+                contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+          ),
         ),
       ),
       body: filteredClaims.isEmpty
@@ -88,8 +104,11 @@ class ClaimsListScreen extends StatelessWidget {
                           width: double.infinity,
                           child: OutlinedButton(
                             onPressed: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Viewing full details for ${claim.id}')),
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ClaimDetailsScreen(claim: claim),
+                                ),
                               );
                             },
                             style: OutlinedButton.styleFrom(

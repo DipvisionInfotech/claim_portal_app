@@ -280,13 +280,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     const Center(
                       child: Column(
                         children: [
-                          const Text(
+                          Text(
                             'By logging in, you agree to our Terms & Privacy Policy',
                             style: TextStyle(color: Colors.grey, fontSize: 10),
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(height: 12),
-                          const Text(
+                          Text(
                             'Powered by @Dcirrus',
                             style: TextStyle(color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w500),
                           ),
